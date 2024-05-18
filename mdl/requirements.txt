@@ -1,0 +1,1 @@
+veriti @ git+https://github.com/cdotrus/veriti.git@0.1.0#egg=veriti&subdirectory=src/sw/python
