@@ -44,8 +44,8 @@ jobs:
         with:
           name: simulation
           path: |
-            **/*/events.log
-            **/*/coverage.txt
+            build/**/events.log
+            build/**/coverage.txt
   
   compile:
     runs-on: ubuntu-latest
@@ -73,7 +73,7 @@ jobs:
           orbit b -- -g WORD_SIZE=4 --bit
 
       - name: Save Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: compilation
           path: |
