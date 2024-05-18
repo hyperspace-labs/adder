@@ -129,8 +129,8 @@ cp_cout_gen = CoverPoint(
 # Prepare the traces for simulation
 
 # create empty test vector files
-inputs = TraceFile('inputs.trace', Mode.IN).open()
-outputs = TraceFile('outputs.trace', Mode.OUT).open()
+inputs = TraceFile('inputs.txt', Mode.IN).open()
+outputs = TraceFile('outputs.txt', Mode.OUT).open()
 
 # initialize the randomness seed
 random.seed(rng_seed(0))

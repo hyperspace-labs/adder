@@ -33,8 +33,52 @@ jobs:
           orbit b -- --lib veriti -g WORD_SIZE=8
           veriti check --log ./build/gsim/events.log
 
-      - name: Verify adder (20 bits)
+      - name: Verify adder (32 bits)
         run: |
           orbit plan --clean --plugin gsim --top adder
-          orbit b -- --lib veriti -g WORD_SIZE=20
+          orbit b -- --lib veriti -g WORD_SIZE=32
           veriti check --log ./build/gsim/events.log
+      
+      - name: Save results
+        uses: actions/upload-artifact@v4
+        with:
+          name: simulation
+          path: |
+            **/*/events.log
+            **/*/coverage.txt
+  
+  compile:
+    runs-on: ubuntu-latest
+    container:
+        image: cdotrus/quiet-quartet
+    steps:
+      - name: Fetch repository
+        uses: actions/checkout@v3
+
+      - name: Log all tool versions
+        run: |
+          orbit --version  
+          python --version
+          quartus_sh --version
+        
+      - name: Configure orbit profile
+        run: |
+          git clone https://github.com/cdotrus/orbit-profile.git "$(orbit env ORBIT_HOME)/profiles/cdotrus"
+          pip install -r "$(orbit env ORBIT_HOME)/profiles/cdotrus/requirements.txt"
+          orbit config --append include="profiles/cdotrus/config.toml"
+
+      - name: Compile bitstream for 4-bit adder
+        run: |
+          orbit plan --clean --plugin quartz --top adder
+          orbit b -- -g WORD_SIZE=4 --bit
+          veriti check --log ./build/gsim/events.log
+
+      - name: Save Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: compilation
+          path: |
+            build/**/*.summary
+            build/**/*.rpt
+            build/**/*.sof
+            build/**/*.pof
