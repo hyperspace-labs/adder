@@ -17,7 +17,6 @@ WIDTH = get_generic(key='WORD_SIZE', type=int)
 
 # Define the functional model
 class Adder:
-
     def __init__(self, width: int):
         # inputs
         self.in0 = Signal(width=width, dist=Distribution(space=[0, pow2m1(width), range(1, pow2m1(width))], weights=[0.1, 0.1, 0.8]))
@@ -28,7 +27,6 @@ class Adder:
         self.cout = Signal()
         pass
 
-
     def evaluate(self):
         result = self.in0.to_int() + self.in1.to_int() + self.cin.to_int()
         temp = Signal(width=self.in0.get_width()+1, value=result, endianness='big').to_logic()
@@ -37,7 +35,6 @@ class Adder:
         self.cout.set(temp[0])
         return self
     pass
-
 
 model = Adder(width=WIDTH)
 
@@ -137,13 +134,12 @@ random.seed(rng_seed(0))
 
 # generate test cases until total coverage is met or we reached max count
 while Coverage.all_passed(MAX_SIMS) == False:
-
     # Create a new input to enter through the algorithm and
     # use coverage-driven test generation (CDTG) using linear priorities.
-    
+    #
     # When specifying CDTG ('linear'), it provides a 7x reduction in tests 
     # required to meet coverage as compared to truly random ('none').
-    # It reduces 2010 tests to 288 to achieve the same coverage.
+    # In one case, it reduces 2010 tests to 288 to achieve the same coverage.
     txn = randomize(model, strategy='linear')
 
     # write each incoming transaction to the DUT

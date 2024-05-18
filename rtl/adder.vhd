@@ -1,3 +1,10 @@
+-- Project: adder
+-- Entity: adder
+--
+-- Computes the sum between two operands `in0` and `in1`. A carry-out signal
+-- `cout` can be used to signify when an overflow occurs. This design is
+-- described in combinational logic.
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
