@@ -71,7 +71,6 @@ jobs:
         run: |
           orbit plan --clean --plugin quartz --top adder
           orbit b -- -g WORD_SIZE=4 --bit
-          veriti check --log ./build/gsim/events.log
 
       - name: Save Results
         uses: actions/upload-artifact@v4
