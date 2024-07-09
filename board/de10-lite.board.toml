@@ -1,16 +1,18 @@
-# File: Intel DE10-Lite FPGA board file
-# Version: 3.0.0
+# Project: Summit
+# Top level: adder
+# FPGA board: Intel DE10-Lite
 # Manual: http://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&No=1021&PartNo=4
 # Schematic: https://faculty-web.msoe.edu/johnsontimoj/Common/FILES/de10-lite.pdf
-# Usage:
-#   1. Uncomment any pins to be assigned
-#   2. Replace '__' with the port name found in the HDL top-level entity
 #
 # TOML file for mapping top-level ports to physical Intel FPGA pins. 
 #
 # Code proceeding a '#' will be ignored. Pins have format "PIN_# = <PORT>". 
 # Mapping is processed in Quartus by adding a TCL command for assigning each
 # assigned pin during implementation (place-and-route).
+#
+# To use this file, (1) uncomment any pins that are used and then (2) enter
+# the port name identified in the top-level design unit for each pin in the 
+# quoted value "".
 
 [part]
 # ----- Device -----------------------------------------------------------------
@@ -30,23 +32,23 @@ DEVICE = "10M50DAF484C7G"
 # ----- Push Buttons -----------------------------------------------------------
 # NOTE: PRESS sends low logic level, RELEASE sends high logic level.
 # ------------------------------------------------------------------------------
-# PIN_B8 = __            # KEY0 Push-button[0] 3.3-V SCHMITT TRIGGER
+PIN_B8 = "carry_in"            # KEY0 Push-button[0] 3.3-V SCHMITT TRIGGER
 # PIN_A7 = __            # KEY1 Push-button[1] 3.3-V SCHMITT TRIGGER
 
 
 # ----- Switches ---------------------------------------------------------------
 # NOTE: UP sends high logic level, DOWN sends low logic level.
 # ------------------------------------------------------------------------------
-PIN_C10 = "in0[0]"           # SW0 Slide Switch[0] 3.3-V LVTTL
-PIN_C11 = "in0[1]"           # SW1 Slide Switch[1] 3.3-V LVTTL
-PIN_D12 = "in0[2]"           # SW2 Slide Switch[2] 3.3-V LVTTL
-PIN_C12 = "in0[3]"           # SW3 Slide Switch[3] 3.3-V LVTTL
-PIN_A12 = "in1[0]"           # SW4 Slide Switch[4] 3.3-V LVTTL
-PIN_B12 = "in1[1]"           # SW5 Slide Switch[5] 3.3-V LVTTL
-PIN_A13 = "in1[2]"           # SW6 Slide Switch[6] 3.3-V LVTTL
-PIN_A14 = "in1[3]"           # SW7 Slide Switch[7] 3.3-V LVTTL
-# PIN_B14 = __           # SW8 Slide Switch[8] 3.3-V LVTTL
-PIN_F15 = "cin"           # SW9 Slide Switch[9] 3.3-V LVTTL
+PIN_C10 = "input1[0]"           # SW0 Slide Switch[0] 3.3-V LVTTL
+PIN_C11 = "input1[1]"           # SW1 Slide Switch[1] 3.3-V LVTTL
+PIN_D12 = "input1[2]"           # SW2 Slide Switch[2] 3.3-V LVTTL
+PIN_C12 = "input1[3]"           # SW3 Slide Switch[3] 3.3-V LVTTL
+PIN_A12 = "input1[4]"           # SW4 Slide Switch[4] 3.3-V LVTTL
+PIN_B12 = "input2[0]"           # SW5 Slide Switch[5] 3.3-V LVTTL
+PIN_A13 = "input2[1]"           # SW6 Slide Switch[6] 3.3-V LVTTL
+PIN_A14 = "input2[2]"           # SW7 Slide Switch[7] 3.3-V LVTTL
+PIN_B14 = "input2[3]"           # SW8 Slide Switch[8] 3.3-V LVTTL
+PIN_F15 = "input2[4]"           # SW9 Slide Switch[9] 3.3-V LVTTL
 
 
 # ----- LEDs -------------------------------------------------------------------
@@ -56,8 +58,8 @@ PIN_A8  = "sum[0]"           # LEDR0 LED[0] 3.3-V LVTTL
 PIN_A9  = "sum[1]"           # LEDR1 LED[1] 3.3-V LVTTL
 PIN_A10 = "sum[2]"           # LEDR2 LED[2] 3.3-V LVTTL
 PIN_B10 = "sum[3]"           # LEDR3 LED[3] 3.3-V LVTTL
-PIN_D13 = "cout"           # LEDR4 LED[4] 3.3-V LVTTL
-# PIN_C13 = __           # LEDR5 LED[5] 3.3-V LVTTL
+PIN_D13 = "sun[4]"           # LEDR4 LED[4] 3.3-V LVTTL
+PIN_C13 = "carry_out"           # LEDR5 LED[5] 3.3-V LVTTL
 # PIN_E14 = __           # LEDR6 LED[6] 3.3-V LVTTL
 # PIN_D14 = __           # LEDR7 LED[7] 3.3-V LVTTL
 # PIN_A11 = __           # LEDR8 LED[8] 3.3-V LVTTL

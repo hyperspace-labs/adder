@@ -1,44 +1,46 @@
--- Project: adder
+-- Project: Summit
 -- Entity: adder
---
--- Computes the sum between two operands `in0` and `in1`. A carry-out signal
--- `cout` can be used to signify when an overflow occurs. This design is
--- described in combinational logic.
+-- 
+-- Instantiates 6 full adders to create a 6-bit ripple carry adder
+-- architecture.
 
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-library amp;
-use amp.prelude.all;
+library work;
 
 entity adder is
-  generic(
-    WORD_SIZE: psize
-  );
-  port(
-    cin: in logic;
-    in0: in logics(WORD_SIZE-1 downto 0);
-    in1: in logics(WORD_SIZE-1 downto 0);
-    sum: out logics(WORD_SIZE-1 downto 0);
-    cout: out logic
-  );
+    port(
+        input1    : in  std_logic_vector(4 downto 0);
+        input2    : in  std_logic_vector(4 downto 0);
+        carry_in  : in  std_logic;
+        sum       : out std_logic_vector(4 downto 0);
+        carry_out : out std_logic
+    );
 end entity;
 
 
-architecture rtl of adder is
-  signal result: logics(WORD_SIZE-1+1 downto 0);
+architecture struct of adder is
 
-  signal cins: logics(WORD_SIZE-1 downto 0) := (others => '0');
-  signal temp: logics(WORD_SIZE-1+1 downto 0);
+    -- internal signal to propagate carry bit through each full adder
+    signal carry_i: std_logic_vector(5 downto 0) := (others => '0');
+
 begin
+    -- first bit being carried in to adder
+    carry_i(0) <= carry_in;
 
-  cins(0) <= cin;
+    -- generate 6 full adder instances  
+    ripple_carry: for ii in 0 to 4 generate
+        u_fa_chain: entity work.fa 
+          port map(
+            input1    => input1(ii),
+            input2    => input2(ii),
+            carry_in  => carry_i(ii),
+            sum       => sum(ii),
+            carry_out => carry_i(ii+1)
+          );
+    end generate ripple_carry;
 
-  temp <= logics(usign("0" & in0) + usign("0" & in1));
-  result <= logics(usign(temp) + usign(cins));
-
-  cout <= result(WORD_SIZE);
-  sum <= result(WORD_SIZE-1 downto 0);
+    -- last bit is to be carried out from adder
+    carry_out <= carry_i(5);
 
 end architecture;

@@ -1,0 +1,65 @@
+name: pipeline
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+        image: cdotrus/groovy-guitar:latest
+    steps:
+      - name: Fetch repository
+        uses: actions/checkout@v4
+
+      - name: Log all tool versions
+        run: |
+          orbit --version  
+          python --version
+          ghdl --version
+        
+      - name: Configure orbit profile
+        run: |
+          git clone https://github.com/hyperspace-labs/orbit-profile.git "$(orbit env ORBIT_HOME)/profiles/hyperspace-labs"
+          orbit config --append include="profiles/hyperspace-labs/config.toml"
+
+      - name: Test full adder
+        run: |
+          orbit test --bench fa_tb
+
+      - name: Test adder
+        run: |
+          orbit test --bench adder_tb
+  
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    container:
+        image: cdotrus/quiet-quartet:latest
+    steps:
+      - name: Fetch repository
+        uses: actions/checkout@v4
+
+      - name: Log all tool versions
+        run: |
+          orbit --version  
+          python --version
+          quartus_sh --version
+
+      - name: Configure orbit profile
+        run: |
+          git clone https://github.com/hyperspace-labs/orbit-profile.git "$(orbit env ORBIT_HOME)/profiles/hyperspace-labs"
+          orbit config --append include="profiles/hyperspace-labs/config.toml"
+
+      - name: Generate bistream for adder
+        run: |
+          orbit b -- --bit
+
+      - name: Save Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: compilation
+          path: |
+            build/**/*.summary
+            build/**/*.rpt
+            build/**/*.sof
+            build/**/*.pof

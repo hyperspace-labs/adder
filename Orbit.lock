@@ -2,26 +2,7 @@
 version = 1
 
 [[ip]]
-name = "adder"
+name = "summit"
 version = "0.1.0"
-uuid = "73b340f0-0831-47e7-b586-3121053bc954"
-dependencies = [
-    "amp:1.0.0",
-    "veriti:0.1.0",
-]
-
-[[ip]]
-name = "amp"
-version = "1.0.0"
-uuid = "33bba0d9-1e0e-4b82-aa90-711d8e4baef7"
-checksum = "35ac55a3aebaf43acd2ea865007dd25bad024cf4e8b73317867fbc0dc13e8c08"
-url = "https://github.com/hyperspace-labs/amp/archive/refs/tags/1.0.0.zip"
+uuid = "18134c3f-deac-4457-8e29-18dac87aa6fa"
 dependencies = []
-
-[[ip]]
-name = "veriti"
-version = "0.1.0"
-uuid = "e04c05f1-a341-45ac-a772-63d47e522342"
-checksum = "4c027c1850acfb71ebc5da16be43edbd65ec60507968dc2115bf195c686238b8"
-url = "https://github.com/cdotrus/veriti/archive/refs/tags/0.1.0.zip"
-dependencies = ["amp:1.0.0"]

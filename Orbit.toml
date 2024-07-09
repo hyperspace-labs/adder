@@ -1,13 +1,9 @@
 [ip]
-name = "adder"
-description = "A basic adder"
+name = "summit"
+description = "A collection of simple hardware units"
 version = "0.1.0"
 public = ["/rtl"]
 
 # See more keys and their definitions at https://cdotrus.github.io/orbit/reference/manifest.html
 
 [dependencies]
-amp = "1.0.0"
-
-[dev-dependencies]
-veriti = "0.1.0"
