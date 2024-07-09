@@ -64,6 +64,8 @@ begin
         end loop;
       end loop;
     end loop;
+
+    report "simulation complete";
     wait;
   end process;
 
