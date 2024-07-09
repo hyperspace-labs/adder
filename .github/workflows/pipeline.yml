@@ -6,10 +6,13 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     container:
-        image: cdotrus/melodic-marimba:latest
+      image: cdotrus/melodic-marimba:latest
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+      ACTIONS_RUNNER_FORCE_ACTIONS_NODE_VERSION: node16
     steps:
       - name: Fetch repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Log all tool versions
         run: |
