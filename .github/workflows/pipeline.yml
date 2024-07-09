@@ -40,7 +40,7 @@ jobs:
       ACTIONS_RUNNER_FORCE_ACTIONS_NODE_VERSION: node16
     steps:
       - name: Fetch repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Log all tool versions
         run: |
