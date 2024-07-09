@@ -13,7 +13,7 @@ module top(
     adder u0(
         .input1(switches[9:5]),
         .input2(switches[4:0]),
-        .carry_in(cin),
+        .carry_in(btn),
         .sum(leds[4:0]),
         .carry_out(leds[5])
     );
