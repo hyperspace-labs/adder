@@ -8,12 +8,15 @@ library ieee;
 use ieee.std_logic_1164.all;
 library work;
 
+-- Add 5-bit inputs together with support for carry-in and 
+-- carry-out using combinational logic.
 entity adder is
   port(
     input1    : in  std_logic_vector(4 downto 0);
     input2    : in  std_logic_vector(4 downto 0);
     carry_in  : in  std_logic;
     sum       : out std_logic_vector(4 downto 0);
+    -- Overflow bit when addition exceeds `sum`'s maximum value.
     carry_out : out std_logic
   );
 end entity;
