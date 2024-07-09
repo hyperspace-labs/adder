@@ -64,7 +64,7 @@ jobs:
       - name: Save Results
         uses: actions/upload-artifact@v3
         with:
-          name: compilation
+          name: Adder
           path: |
             target/quartz/**/*.summary
             target/quartz/**/*.rpt

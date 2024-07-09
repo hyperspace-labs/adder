@@ -30,7 +30,7 @@ begin
 
     -- generate 6 full adder instances  
     ripple_carry: for ii in 0 to 4 generate
-        u_fa_chain: entity work.fa 
+        u_fa_chain: entity work.fa(struct)
           port map(
             input1    => input1(ii),
             input2    => input2(ii),

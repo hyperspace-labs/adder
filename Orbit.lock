@@ -2,7 +2,15 @@
 version = 1
 
 [[ip]]
+name = "gates"
+version = "1.0.0"
+uuid = "e427442a-885f-407b-abb3-e53b1a318db6"
+checksum = "61da86cd605dc7aca4df9f1ec8aa039b85dec8b970318f4b135ea625e8655d79"
+url = "https://github.com/hyperspace-labs/gates/archive/1.0.0.zip"
+dependencies = []
+
+[[ip]]
 name = "summit"
 version = "0.1.0"
 uuid = "18134c3f-deac-4457-8e29-18dac87aa6fa"
-dependencies = []
+dependencies = ["gates:1.0.0"]
