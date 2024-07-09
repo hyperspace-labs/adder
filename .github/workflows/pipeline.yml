@@ -57,14 +57,14 @@ jobs:
           pip install -r "$(orbit env ORBIT_HOME)/profiles/hyperspace-labs/requirements.txt"
           orbit config --append include="profiles/hyperspace-labs/config.toml"
 
-      - name: Generate bistream for adder
+      - name: Generate bistream for top
         run: |
-          orbit build --top adder -- --bit
+          orbit build --top top -- --bit
 
       - name: Save Results
         uses: actions/upload-artifact@v3
         with:
-          name: Adder
+          name: Top
           path: |
             target/quartz/**/*.summary
             target/quartz/**/*.rpt
