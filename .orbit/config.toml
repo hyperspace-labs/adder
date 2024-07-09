@@ -1,5 +1,5 @@
 [test]
-default-target = "gsim"
+default-target = "msim"
 
 [build]
 default-target = "quartz"

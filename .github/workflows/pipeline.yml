@@ -56,7 +56,7 @@ jobs:
 
       - name: Generate bistream for adder
         run: |
-          orbit b --top adder -- --bit
+          orbit build --top adder -- --bit
 
       - name: Save Results
         uses: actions/upload-artifact@v3
