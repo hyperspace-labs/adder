@@ -27,11 +27,11 @@ jobs:
 
       - name: Test full adder
         run: |
-          orbit test --bench fa_tb
+          orbit test --tb fa_tb
 
       - name: Test adder
         run: |
-          orbit test --bench adder_tb
+          orbit test --tb adder_tb
   
   Build:
     runs-on: ubuntu-latest
