@@ -12,5 +12,6 @@ dependencies = []
 [[ip]]
 name = "summit"
 version = "0.1.0"
-uuid = "18134c3f-deac-4457-8e29-18dac87aa6fa"
+uuid = "dadf1e89-e20d-47da-b054-80f377466b10"
+url = "https://github.com/hyperspace-labs/summit/archive/{{orbit.ip.version}}.zip"
 dependencies = ["gates:1.0.1"]
